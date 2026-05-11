@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <RootNamespace>Tamp.AzureFunctionsCoreTools.V4</RootNamespace>
+    <AssemblyName>Tamp.AzureFunctionsCoreTools.V4</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Package">
+    <PackageId>Tamp.AzureFunctionsCoreTools.V4</PackageId>
+    <Description>Tamp wrapper for Azure Functions Core Tools (func) 4.x. v0.1.0 covers: Publish (FC1-friendly: --build, --no-build, --slot, access token via stdin Secret), LogStream, FetchAppSettings, ListFunctions, Version, Raw. Access token typed as Secret and routed via --access-token-stdin so it stays out of argv / process listings.</Description>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="$(TampCorePath)" Condition="'$(TampCoreMode)' == 'project'" />
+    <PackageReference Include="Tamp.Core" Condition="'$(TampCoreMode)' == 'package'" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
+  </ItemGroup>
+
+</Project>
