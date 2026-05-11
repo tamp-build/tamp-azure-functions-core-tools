@@ -69,4 +69,50 @@ public static class Func
         s.AddArgs(arguments);
         return s.ToCommandPlan(func);
     }
+
+    // ---- Object-init overloads (TAM-161 satellite fanout) ----
+    // Two equivalent authoring styles; both produce identical CommandPlans. Fluent
+    // stays canonical in docs and `tamp init` templates; object-init available for
+    // consumers who prefer the C# initializer shape.
+    //
+    //     Func.Publish(FuncTool, new() { AppName = "strata-api" });
+    //
+    // is equivalent to:
+    //
+    //     Func.Publish(FuncTool, s => s.SetAppName("strata-api"));
+
+    public static CommandPlan Publish(Tool func, FuncPublishSettings settings)
+    {
+        if (func is null) throw new ArgumentNullException(nameof(func));
+        if (settings is null) throw new ArgumentNullException(nameof(settings));
+        return settings.ToCommandPlan(func);
+    }
+
+    public static CommandPlan LogStream(Tool func, FuncLogStreamSettings settings)
+    {
+        if (func is null) throw new ArgumentNullException(nameof(func));
+        if (settings is null) throw new ArgumentNullException(nameof(settings));
+        return settings.ToCommandPlan(func);
+    }
+
+    public static CommandPlan FetchAppSettings(Tool func, FuncFetchAppSettingsSettings settings)
+    {
+        if (func is null) throw new ArgumentNullException(nameof(func));
+        if (settings is null) throw new ArgumentNullException(nameof(settings));
+        return settings.ToCommandPlan(func);
+    }
+
+    public static CommandPlan ListFunctions(Tool func, FuncListFunctionsSettings settings)
+    {
+        if (func is null) throw new ArgumentNullException(nameof(func));
+        if (settings is null) throw new ArgumentNullException(nameof(settings));
+        return settings.ToCommandPlan(func);
+    }
+
+    public static CommandPlan Version(Tool func, FuncVersionSettings settings)
+    {
+        if (func is null) throw new ArgumentNullException(nameof(func));
+        if (settings is null) throw new ArgumentNullException(nameof(settings));
+        return settings.ToCommandPlan(func);
+    }
 }

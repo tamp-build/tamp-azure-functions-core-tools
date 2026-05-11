@@ -288,10 +288,10 @@ public sealed class FuncTests
     [Fact]
     public void Null_Configurer_Throws_For_Required_Verbs()
     {
-        Assert.Throws<ArgumentNullException>(() => Func.Publish(FakeTool(), null!));
-        Assert.Throws<ArgumentNullException>(() => Func.LogStream(FakeTool(), null!));
-        Assert.Throws<ArgumentNullException>(() => Func.FetchAppSettings(FakeTool(), null!));
-        Assert.Throws<ArgumentNullException>(() => Func.ListFunctions(FakeTool(), null!));
+        Assert.Throws<ArgumentNullException>(() => Func.Publish(FakeTool(), (Action<FuncPublishSettings>)null!));
+        Assert.Throws<ArgumentNullException>(() => Func.LogStream(FakeTool(), (Action<FuncLogStreamSettings>)null!));
+        Assert.Throws<ArgumentNullException>(() => Func.FetchAppSettings(FakeTool(), (Action<FuncFetchAppSettingsSettings>)null!));
+        Assert.Throws<ArgumentNullException>(() => Func.ListFunctions(FakeTool(), (Action<FuncListFunctionsSettings>)null!));
     }
 
     [Fact]
